@@ -29,7 +29,7 @@ const Login = ({ onLogin }) => {
                 className="login-card glass-card neural-border-glow"
             >
                 <div className="login-header">
-                    <img src="/logo.png" alt="Aceweb Logo" />
+                    <img src="logo.png" alt="Aceweb Logo" />
                     <h2>Acesso Restrito</h2>
                     <p>Entre com suas credenciais para gerenciar o ecossistema</p>
                 </div>

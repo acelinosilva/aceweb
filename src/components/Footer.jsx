@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="footer-grid">
                     <div className="footer-brand">
                         <Link to="/" className="logo">
-                            <img src="/logo.png" alt="Aceweb Logo" className="footer-logo-img" />
+                            <img src="logo.png" alt="Aceweb Logo" className="footer-logo-img" />
                         </Link>
                         <p className="footer-desc">
                             Transformando a presença digital de empresas em Brasília e todo o Brasil com tecnologia e design de ponta.

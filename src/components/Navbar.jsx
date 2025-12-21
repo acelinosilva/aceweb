@@ -60,7 +60,7 @@ const Navbar = () => {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isOpen ? 'open' : ''}`}>
             <div className="container nav-content">
                 <Link to="/" className="logo">
-                    <img src="/logo.png" alt="Aceweb Logo" className="logo-img" />
+                    <img src="logo.png" alt="Aceweb Logo" className="logo-img" />
                 </Link>
 
                 <div className={`nav-links ${isOpen ? 'active' : ''}`}>

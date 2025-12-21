@@ -189,7 +189,7 @@ const Admin = () => {
         <div className="admin-layout">
             <aside className="admin-sidebar">
                 <div className="admin-brand">
-                    <img src="/logo.png" alt="Aceweb Logo" />
+                    <img src="logo.png" alt="Aceweb Logo" />
                     <span>Painel Elite</span>
                 </div>
 
