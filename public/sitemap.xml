@@ -36,4 +36,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Locations -->
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/sao-paulo</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/brasilia</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/minas-gerais</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/acre</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/alagoas</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/amazonas</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/bahia</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/ceara</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/espirito-santo</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/goias</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/maranhao</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/mato-grosso</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/mato-grosso-do-sul</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/para</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/paraiba</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/parana</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/pernambuco</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/piaui</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-de-janeiro</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-grande-do-norte</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-grande-do-sul</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rondonia</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/roraima</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/santa-catarina</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/sergipe</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/tocantins</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/taboao-da-serra</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/suica</loc><priority>0.6</priority></url>
+  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/estados-unidos</loc><priority>0.6</priority></url>
 </urlset>
