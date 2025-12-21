@@ -35,7 +35,14 @@ const Admin = () => {
     const [editType, setEditType] = useState(null); // 'blog' or 'portfolio'
 
     // Form States
-    const [newPost, setNewPost] = useState({ title: '', content: '', image: '', date: new Date().toLocaleDateString('pt-BR') });
+    const [newPost, setNewPost] = useState({
+        title: '',
+        slug: '',
+        metaDescription: '',
+        content: '',
+        image: '',
+        date: new Date().toLocaleDateString('pt-BR')
+    });
     const [newProject, setNewProject] = useState({ title: '', category: '', image: '' });
     const [statusMsg, setStatusMsg] = useState('');
 
@@ -258,6 +265,24 @@ const Admin = () => {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label>SEO Slug (URL-Amigável)</label>
+                                    <input
+                                        type="text"
+                                        value={newPost.slug}
+                                        onChange={(e) => setNewPost({ ...newPost, slug: e.target.value.toLowerCase().replace(/ /g, '-') })}
+                                        placeholder="ex: tendencias-design-2025"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Meta Descrição (SEO)</label>
+                                    <textarea
+                                        value={newPost.metaDescription}
+                                        onChange={(e) => setNewPost({ ...newPost, metaDescription: e.target.value })}
+                                        placeholder="Breve resumo para o Google (160 caracteres)"
+                                        rows="2"
+                                    />
+                                </div>
+                                <div className="form-group">
                                     <label>Imagem de Destaque</label>
                                     <div className="upload-container">
                                         <input
@@ -475,8 +500,8 @@ const Admin = () => {
                         </div>
                     )}
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     );
 };
 

@@ -11,11 +11,56 @@ const ArticleDetail = () => {
     useEffect(() => {
         const savedPosts = JSON.parse(localStorage.getItem('ace_blog_posts')) || [];
         const index = parseInt(id);
-        if (savedPosts[index]) {
-            setPost(savedPosts[index]);
+        const article = savedPosts[index];
+
+        if (article) {
+            setPost(article);
+
+            // --- SEO Optmization ---
+            // 1. Dynamic Title
+            document.title = `${article.title} | Blog Aceweb`;
+
+            // 2. Dynamic Meta Description
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                const plainText = stripHtml(article.content).substring(0, 160);
+                metaDesc.setAttribute('content', plainText);
+            }
+
+            // 3. JSON-LD Structured Data for Google
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": article.title,
+                "image": [article.image],
+                "datePublished": article.date,
+                "author": {
+                    "@type": "Organization",
+                    "name": "Aceweb"
+                },
+                "description": stripHtml(article.content).substring(0, 160)
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.id = 'json-ld-article';
+            script.innerHTML = JSON.stringify(schemaData);
+            document.head.appendChild(script);
+
+            return () => {
+                // Cleanup on unmount
+                const oldScript = document.getElementById('json-ld-article');
+                if (oldScript) oldScript.remove();
+            };
         }
         window.scrollTo(0, 0);
     }, [id]);
+
+    const stripHtml = (html) => {
+        const tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+    };
 
     if (!post) {
         return (
