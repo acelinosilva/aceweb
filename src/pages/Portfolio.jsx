@@ -11,19 +11,19 @@ const Portfolio = () => {
             {
                 title: "Urban Haven",
                 category: "Real Estate Dashboard",
-                image: "/p1.png",
+                image: "p1.png",
                 tags: ["React", "Glassmorphism", "High-End"]
             },
             {
                 title: "PeakFlow Fitness",
                 category: "Mobile Landing Page",
-                image: "/p2.png",
+                image: "p2.png",
                 tags: ["Mobile First", "Performance", "UI/UX"]
             },
             {
                 title: "Aurora Tech",
                 category: "Corporate Startup Site",
-                image: "/p3.png",
+                image: "p3.png",
                 tags: ["Multi-device", "SEO", "Modern"]
             }
         ];
@@ -41,7 +41,7 @@ const Portfolio = () => {
         const dynamicProjects = savedProjects.map(proj => ({
             title: proj.title || "Projeto Aceweb",
             category: proj.category || "Desenvolvimento Web",
-            image: proj.image || "/p1.png",
+            image: proj.image || "p1.png",
             tags: Array.isArray(proj.tags) ? proj.tags : ["Aceweb Elite", "Digital"]
         }));
 

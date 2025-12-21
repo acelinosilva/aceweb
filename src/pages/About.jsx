@@ -65,7 +65,7 @@ const About = () => {
                             transition={{ delay: 0.2 }}
                             className="story-visual glass-card neural-border"
                         >
-                            <img src="/about-home.png" alt="Aceweb Office" className="story-img" />
+                            <img src="about-home.png" alt="Aceweb Office" className="story-img" />
                             <div className="img-glow-overlay"></div>
                         </motion.div>
                     </div>

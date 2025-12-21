@@ -17,9 +17,9 @@ const Home = () => {
     });
 
     const [recentProjects, setRecentProjects] = useState([
-        { title: "Urban Haven", cat: "Luxury Real Estate", img: "/p1.png" },
-        { title: "PeakFlow", cat: "Fitness App", img: "/p2.png" },
-        { title: "Aurora Tech", cat: "Tech Startup", img: "/p3.png" }
+        { title: "Urban Haven", cat: "Luxury Real Estate", img: "p1.png" },
+        { title: "PeakFlow", cat: "Fitness App", img: "p2.png" },
+        { title: "Aurora Tech", cat: "Tech Startup", img: "p3.png" }
     ]);
 
     useEffect(() => {
@@ -29,9 +29,9 @@ const Home = () => {
         const savedProjects = JSON.parse(localStorage.getItem('ace_portfolio_items')) || [];
 
         const staticItems = [
-            { title: "Urban Haven", cat: "Luxury Real Estate", img: "/p1.png" },
-            { title: "PeakFlow", cat: "Fitness App", img: "/p2.png" },
-            { title: "Aurora Tech", cat: "Tech Startup", img: "/p3.png" }
+            { title: "Urban Haven", cat: "Luxury Real Estate", img: "p1.png" },
+            { title: "PeakFlow", cat: "Fitness App", img: "p2.png" },
+            { title: "Aurora Tech", cat: "Tech Startup", img: "p3.png" }
         ];
 
         const dynamicItems = savedProjects.map(p => ({
@@ -286,7 +286,7 @@ const Home = () => {
                             className="about-visual-container"
                         >
                             <div className="about-image-wrapper">
-                                <img src="/about-home.png" alt="Aceweb Agency Futuristic Office" />
+                                <img src="about-home.png" alt="Aceweb Agency Futuristic Office" />
                                 <div className="about-image-glow"></div>
                             </div>
 
