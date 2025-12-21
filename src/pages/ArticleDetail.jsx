@@ -28,8 +28,6 @@ const ArticleDetail = () => {
 
     return (
         <div className="article-detail-page">
-            <div className="article-hero-bg"></div>
-
             <div className="container narrow-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -48,7 +46,7 @@ const ArticleDetail = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="article-content-body glass-card neural-border"
+                    className="article-content-body"
                 >
                     {post.image && (
                         <div className="article-featured-image">

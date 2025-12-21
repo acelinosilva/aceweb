@@ -70,7 +70,6 @@
     margin-bottom: 3rem;
     border-radius: 15px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .article-featured-image img {
@@ -81,7 +80,7 @@
 }
 
 .prose-content {
-    color: var(--text-secondary);
+    color: #ddd;
     font-size: 1.2rem;
     line-height: 1.8;
 }
@@ -114,9 +113,7 @@
     margin: 3rem 0;
     font-style: italic;
     color: #fff;
-    background: rgba(68, 208, 93, 0.05);
-    padding: 2rem;
-    border-radius: 0 15px 15px 0;
+    padding: 2rem 0;
 }
 
 .prose-content img {
