@@ -1,0 +1,217 @@
+.contact-page {
+    background: #000;
+}
+
+.contact-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 150px;
+    background: radial-gradient(circle at 100% 0%, rgba(68, 208, 93, 0.1) 0%, transparent 50%);
+}
+
+.hero-contact-container {
+    z-index: 10;
+    position: relative;
+}
+
+.contact-hero-content {
+    max-width: 800px;
+}
+
+.contact-grid-main {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 8rem;
+    align-items: flex-start;
+}
+
+/* Elite Sidebar */
+.contact-sidebar-elite {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.sidebar-group h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.sidebar-group h3 span {
+    color: var(--primary-color);
+}
+
+.info-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card-premium {
+    padding: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.info-card-premium:hover {
+    transform: translateX(10px);
+    background: rgba(68, 208, 93, 0.05);
+}
+
+.info-icon-box {
+    width: 54px;
+    height: 54px;
+    background: rgba(68, 208, 93, 0.1);
+    color: var(--primary-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.info-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.contact-benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-benefit-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.contact-benefit-list li svg {
+    color: var(--primary-color);
+}
+
+/* Premium Form Elite */
+.contact-form-container {
+    padding: 4.5rem;
+    position: relative;
+}
+
+.neural-border-glow {
+    border: 1px solid rgba(68, 208, 93, 0.2);
+    box-shadow: 0 0 40px rgba(68, 208, 93, 0.05);
+}
+
+.premium-form-elite {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-group-premium {
+    position: relative;
+}
+
+.form-group-premium label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.form-group-premium input,
+.form-group-premium select,
+.form-group-premium textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-group-premium input:focus,
+.form-group-premium select:focus,
+.form-group-premium textarea:focus {
+    border-color: var(--primary-color);
+    background: rgba(68, 208, 93, 0.03);
+    box-shadow: 0 0 20px rgba(68, 208, 93, 0.1);
+}
+
+.form-group-premium select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Success State */
+.form-success-state {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.success-icon-anim {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px var(--primary-color));
+}
+
+@media (max-width: 1024px) {
+    .contact-grid-main {
+        grid-template-columns: 1fr;
+        gap: 6rem;
+    }
+
+    .contact-hero {
+        text-align: center;
+        padding-top: 120px;
+    }
+
+    .contact-hero-content {
+        margin: 0 auto;
+    }
+
+    .contact-form-container {
+        padding: 3rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .title-premium {
+        font-size: 2.5rem;
+    }
+}

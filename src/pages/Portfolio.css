@@ -1,0 +1,130 @@
+.portfolio-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 150px;
+    padding-bottom: 80px;
+}
+
+.portfolio-grid-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.project-card {
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-image-box {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.project-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.project-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(68, 208, 93, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.hover-content {
+    color: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateY(20px);
+    transition: var(--transition);
+    font-weight: 800;
+}
+
+.project-card:hover .project-image-box img {
+    transform: scale(1.1);
+}
+
+.project-card:hover .project-hover-overlay {
+    opacity: 1;
+}
+
+.project-card:hover .hover-content {
+    transform: translateY(0);
+}
+
+.project-info {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.project-cat {
+    display: block;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.project-info h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--glass-border);
+}
+
+.portfolio-cta {
+    padding: 5rem;
+}
+
+.portfolio-cta h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        max-width: 100%;
+    }
+
+    .portfolio-cta {
+        padding: 3rem 1.5rem;
+    }
+
+    .portfolio-cta h2 {
+        font-size: 2.2rem;
+    }
+}
