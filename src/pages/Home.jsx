@@ -6,7 +6,7 @@ import {
     MousePointer2, Laptop, Code, ExternalLink, Layout, Quote
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import NewsCarousel from '../components/NewsCarousel';
+import NewsGrid from '../components/NewsGrid';
 import './Home.css';
 
 const Home = () => {
@@ -402,7 +402,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <NewsCarousel />
+            <NewsGrid />
 
             {/* CTA Final */}
             <section className="section-padding bg-surface">
