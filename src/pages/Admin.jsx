@@ -11,7 +11,8 @@ import {
     Edit3,
     X,
     Eye,
-    Building2
+    Building2,
+    Database
 } from 'lucide-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -55,16 +56,54 @@ const Admin = () => {
                 img.src = event.target.result;
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 800;
+                    const MAX_WIDTH = 600; // Reduced from 800
                     const scaleSize = MAX_WIDTH / img.width;
                     canvas.width = MAX_WIDTH;
                     canvas.height = img.height * scaleSize;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    resolve(canvas.toDataURL('image/jpeg', 0.7));
+                    // Use WebP for better compression if possible, fallback to jpeg
+                    resolve(canvas.toDataURL('image/webp', 0.6));
                 };
             };
         });
+    };
+
+    const optimizeAllImages = async () => {
+        if (!window.confirm("Isso irá reprocessar todas as imagens salvas para liberar espaço. Pode levar alguns segundos. Continuar?")) return;
+
+        showStatus("Otimizando banco de dados...");
+
+        const optimizeList = async (list) => {
+            return Promise.all(list.map(async (item) => {
+                if (item.image && item.image.length > 50000) { // If image > 50kb
+                    try {
+                        const res = await fetch(item.image);
+                        const blob = await res.blob();
+                        const compressed = await compressImage(blob);
+                        return { ...item, image: compressed };
+                    } catch (e) {
+                        return item;
+                    }
+                }
+                return item;
+            }));
+        };
+
+        const newPosts = await optimizeList(blogPosts);
+        const newProjects = await optimizeList(portfolioItems);
+
+        setBlogPosts(newPosts);
+        setPortfolioItems(newProjects);
+
+        try {
+            localStorage.setItem('ace_blog_posts', JSON.stringify(newPosts));
+            localStorage.setItem('ace_portfolio_items', JSON.stringify(newProjects));
+            showStatus("Sucesso! Espaço liberado.");
+            alert("Banco de dados otimizado com sucesso! Agora você pode adicionar mais itens.");
+        } catch (e) {
+            alert("Erro crítico: Não foi possível salvar a otimização. Tente excluir itens manualmente.");
+        }
     };
 
     const handleFileUpload = async (e, type) => {
@@ -261,6 +300,10 @@ const Admin = () => {
                         onClick={() => { setActiveTab('institucional'); cancelEdit(); }}
                     >
                         <Building2 size={20} /> Institucional
+                    </button>
+
+                    <button className="optimize-btn" onClick={optimizeAllImages} style={{ marginTop: 'auto', background: 'rgba(255,165,0,0.1)', color: 'orange', border: '1px solid orange' }}>
+                        <Database size={20} /> Otimizar Espaço
                     </button>
                 </nav>
 
