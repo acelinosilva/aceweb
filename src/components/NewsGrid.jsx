@@ -3,6 +3,37 @@ import { motion } from 'framer-motion';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './NewsGrid.css';
+import { useAsyncImage } from '../hooks/useAsyncImage';
+
+const NewsCard = ({ post, index, stripHtml, fadeInUp }) => {
+    const imageUrl = useAsyncImage(post.image);
+    return (
+        <motion.article
+            {...fadeInUp}
+            transition={{ delay: index * 0.1 }}
+            className="news-card-home glass-card neural-border"
+        >
+            {post.image && (
+                <div className="news-card-img">
+                    <img src={imageUrl || post.image} alt={post.title} />
+                </div>
+            )}
+            <div className="news-card-body">
+                <div className="news-meta">
+                    <Calendar size={14} /> {post.date}
+                </div>
+                <h3>{post.title}</h3>
+                <p>{stripHtml(post.content).substring(0, 120)}...</p>
+                <Link
+                    to={post.isPlaceholder ? "/blog" : `/blog/${index}`}
+                    className="read-more-link"
+                >
+                    Ler Artigo <ArrowRight size={18} />
+                </Link>
+            </div>
+        </motion.article>
+    );
+};
 
 const NewsGrid = () => {
     const [posts, setPosts] = useState([]);
@@ -63,31 +94,13 @@ const NewsGrid = () => {
 
                 <div className="news-grid-home">
                     {posts.map((post, index) => (
-                        <motion.article
+                        <NewsCard
                             key={index}
-                            {...fadeInUp}
-                            transition={{ delay: index * 0.1 }}
-                            className="news-card-home glass-card neural-border"
-                        >
-                            {post.image && (
-                                <div className="news-card-img">
-                                    <img src={post.image} alt={post.title} />
-                                </div>
-                            )}
-                            <div className="news-card-body">
-                                <div className="news-meta">
-                                    <Calendar size={14} /> {post.date}
-                                </div>
-                                <h3>{post.title}</h3>
-                                <p>{stripHtml(post.content).substring(0, 120)}...</p>
-                                <Link
-                                    to={post.isPlaceholder ? "/blog" : `/blog/${index}`}
-                                    className="read-more-link"
-                                >
-                                    Ler Artigo <ArrowRight size={18} />
-                                </Link>
-                            </div>
-                        </motion.article>
+                            post={post}
+                            index={index}
+                            stripHtml={stripHtml}
+                            fadeInUp={fadeInUp}
+                        />
                     ))}
                 </div>
 

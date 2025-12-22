@@ -8,6 +8,29 @@ import {
 import { Link } from 'react-router-dom';
 import NewsGrid from '../components/NewsGrid';
 import './Home.css';
+import { useAsyncImage } from '../hooks/useAsyncImage';
+
+const RecentProjectCard = ({ project, index, fadeInUp }) => {
+    const imageUrl = useAsyncImage(project.img);
+    return (
+        <motion.div
+            {...fadeInUp}
+            transition={{ delay: index * 0.1 }}
+            className="highlight-card-mini glass-card neural-border"
+        >
+            <div className="highlight-img">
+                <img src={imageUrl || project.img} alt={project.title} />
+                <div className="highlight-overlay">
+                    <Link to="/portfolio" className="icon-btn-circle"><ExternalLink size={20} /></Link>
+                </div>
+            </div>
+            <div className="highlight-info-mini">
+                <span>{project.cat}</span>
+                <h3>{project.title}</h3>
+            </div>
+        </motion.div>
+    );
+};
 
 const Home = () => {
     const [instData, setInstData] = useState({
@@ -248,23 +271,12 @@ const Home = () => {
 
                     <div className="highlights-grid">
                         {recentProjects.map((project, index) => (
-                            <motion.div
+                            <RecentProjectCard
                                 key={index}
-                                {...fadeInUp}
-                                transition={{ delay: index * 0.1 }}
-                                className="highlight-card-mini glass-card neural-border"
-                            >
-                                <div className="highlight-img">
-                                    <img src={project.img} alt={project.title} />
-                                    <div className="highlight-overlay">
-                                        <Link to="/portfolio" className="icon-btn-circle"><ExternalLink size={20} /></Link>
-                                    </div>
-                                </div>
-                                <div className="highlight-info-mini">
-                                    <span>{project.cat}</span>
-                                    <h3>{project.title}</h3>
-                                </div>
-                            </motion.div>
+                                project={project}
+                                index={index}
+                                fadeInUp={fadeInUp}
+                            />
                         ))}
                     </div>
 

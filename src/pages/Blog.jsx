@@ -3,6 +3,36 @@ import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Blog.css';
+import { useAsyncImage } from '../hooks/useAsyncImage';
+
+const BlogCard = ({ post, index, stripHtml, fadeInUp }) => {
+    const imageUrl = useAsyncImage(post.image);
+
+    return (
+        <motion.article
+            {...fadeInUp}
+            transition={{ delay: index * 0.1 }}
+            className="blog-card glass-card neural-border"
+        >
+            {post.image && (
+                <div className="blog-card-image">
+                    <img src={imageUrl || post.image} alt={post.title} />
+                </div>
+            )}
+            <div className="blog-card-content">
+                <div className="blog-meta">
+                    <span><Calendar size={14} /> {post.date}</span>
+                    <span><User size={14} /> Equipe Aceweb</span>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{stripHtml(post.content).substring(0, 150)}...</p>
+                <Link to={`/blog/${index}`} className="read-more">
+                    Ler Artigo <ArrowRight size={18} />
+                </Link>
+            </div>
+        </motion.article>
+    );
+};
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);
@@ -47,29 +77,13 @@ const Blog = () => {
                     <div className="blog-grid">
                         {posts.length > 0 ? (
                             posts.map((post, index) => (
-                                <motion.article
+                                <BlogCard
                                     key={index}
-                                    {...fadeInUp}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="blog-card glass-card neural-border"
-                                >
-                                    {post.image && (
-                                        <div className="blog-card-image">
-                                            <img src={post.image} alt={post.title} />
-                                        </div>
-                                    )}
-                                    <div className="blog-card-content">
-                                        <div className="blog-meta">
-                                            <span><Calendar size={14} /> {post.date}</span>
-                                            <span><User size={14} /> Equipe Aceweb</span>
-                                        </div>
-                                        <h3>{post.title}</h3>
-                                        <p>{stripHtml(post.content).substring(0, 150)}...</p>
-                                        <Link to={`/blog/${index}`} className="read-more">
-                                            Ler Artigo <ArrowRight size={18} />
-                                        </Link>
-                                    </div>
-                                </motion.article>
+                                    post={post}
+                                    index={index}
+                                    stripHtml={stripHtml}
+                                    fadeInUp={fadeInUp}
+                                />
                             ))
                         ) : (
                             <div className="empty-blog text-center">

@@ -2,6 +2,42 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, MousePointer2 } from 'lucide-react';
 import './Portfolio.css';
+import { useAsyncImage } from '../hooks/useAsyncImage';
+
+const ProjectCard = ({ project, delay }) => {
+    const imageUrl = useAsyncImage(project.image);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: delay }}
+            className="project-card glass-card neural-border"
+        >
+            <div className="project-image-box">
+                <img src={imageUrl || project.image} alt={project.title} />
+                <div className="project-hover-overlay">
+                    <div className="hover-content">
+                        <ExternalLink size={32} />
+                        <span>Ver Detalhes</span>
+                    </div>
+                </div>
+            </div>
+            <div className="project-info">
+                <div className="project-meta">
+                    <span className="project-cat">{project.category}</span>
+                    <h3>{project.title}</h3>
+                </div>
+                <div className="project-tags">
+                    {project.tags.map((tag, i) => (
+                        <span key={i} className="tag">{tag}</span>
+                    ))}
+                </div>
+            </div>
+        </motion.div>
+    );
+};
 
 const Portfolio = () => {
     const [allProjects, setAllProjects] = useState([]);
@@ -73,33 +109,7 @@ const Portfolio = () => {
                 <div className="container">
                     <div className="portfolio-grid-main">
                         {allProjects.map((project, index) => (
-                            <motion.div
-                                key={index}
-                                {...fadeInUp}
-                                transition={{ delay: index * 0.1 }}
-                                className="project-card glass-card neural-border"
-                            >
-                                <div className="project-image-box">
-                                    <img src={project.image} alt={project.title} />
-                                    <div className="project-hover-overlay">
-                                        <div className="hover-content">
-                                            <ExternalLink size={32} />
-                                            <span>Ver Detalhes</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="project-info">
-                                    <div className="project-meta">
-                                        <span className="project-cat">{project.category}</span>
-                                        <h3>{project.title}</h3>
-                                    </div>
-                                    <div className="project-tags">
-                                        {project.tags.map((tag, i) => (
-                                            <span key={i} className="tag">{tag}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
+                            <ProjectCard key={index} project={project} delay={index * 0.1} />
                         ))}
                     </div>
                 </div>
