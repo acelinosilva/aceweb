@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/#/sobre</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/sobre</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/#/servicos</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/servicos</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/#/portfolio</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/portfolio</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/#/blog</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/blog</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://acelinosilva.github.io/aceweb/#/contato</loc>
-    <lastmod>2024-12-21</lastmod>
+    <loc>https://www.acewebsites.com.br/contato</loc>
+    <lastmod>2024-12-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- Locations -->
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/sao-paulo</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/brasilia</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/minas-gerais</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/acre</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/alagoas</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/amazonas</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/bahia</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/ceara</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/espirito-santo</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/goias</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/maranhao</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/mato-grosso</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/mato-grosso-do-sul</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/para</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/paraiba</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/parana</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/pernambuco</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/piaui</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-de-janeiro</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-grande-do-norte</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rio-grande-do-sul</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/rondonia</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/roraima</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/santa-catarina</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/sergipe</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/tocantins</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/taboao-da-serra</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/suica</loc><priority>0.6</priority></url>
-  <url><loc>https://acelinosilva.github.io/aceweb/#/locais/estados-unidos</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/sao-paulo</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/brasilia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/minas-gerais</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/acre</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/alagoas</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/amazonas</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/bahia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/ceara</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/espirito-santo</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/goias</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/maranhao</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/mato-grosso</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/mato-grosso-do-sul</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/para</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/paraiba</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/parana</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/pernambuco</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/piaui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/rio-de-janeiro</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/rio-grande-do-norte</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/rio-grande-do-sul</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/rondonia</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/roraima</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/santa-catarina</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/sergipe</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/tocantins</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/taboao-da-serra</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/suica</loc><priority>0.6</priority></url>
+  <url><loc>https://www.acewebsites.com.br/locais/estados-unidos</loc><priority>0.6</priority></url>
 </urlset>
