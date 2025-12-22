@@ -46,19 +46,42 @@ const Admin = () => {
     const [newProject, setNewProject] = useState({ title: '', category: '', image: '' });
     const [statusMsg, setStatusMsg] = useState('');
 
-    const handleFileUpload = (e, type) => {
+    const compressImage = (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800;
+                    const scaleSize = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH;
+                    canvas.height = img.height * scaleSize;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    resolve(canvas.toDataURL('image/jpeg', 0.7));
+                };
+            };
+        });
+    };
+
+    const handleFileUpload = async (e, type) => {
         const file = e.target.files[0];
         if (!file) return;
 
-        const reader = new FileReader();
-        reader.onloadend = () => {
+        try {
+            const compressedImage = await compressImage(file);
             if (type === 'blog') {
-                setNewPost({ ...newPost, image: reader.result });
+                setNewPost({ ...newPost, image: compressedImage });
             } else {
-                setNewProject({ ...newProject, image: reader.result });
+                setNewProject({ ...newProject, image: compressedImage });
             }
-        };
-        reader.readAsDataURL(file);
+        } catch (error) {
+            console.error("Error compressing image:", error);
+            alert("Erro ao processar imagem. Tente uma imagem menor.");
+        }
     };
 
     useEffect(() => {
@@ -69,20 +92,11 @@ const Admin = () => {
         let savedPortfolio = JSON.parse(localStorage.getItem('ace_portfolio_items')) || [];
         const savedInst = JSON.parse(localStorage.getItem('ace_inst_data'));
 
-        // FIX: Ensure at least 30 items are shown as requested
-        if (savedPortfolio.length < 30) {
-            const currentCount = savedPortfolio.length;
-            const needed = 30 - currentCount;
-            const placeholders = Array.from({ length: needed }).map((_, i) => ({
-                title: `Projeto Exclusivo ${currentCount + i + 1}`,
-                category: ["E-commerce", "Landing Page", "Institucional", "App Mobile"][i % 4],
-                image: i % 3 === 0 ? "p1.png" : i % 3 === 1 ? "p2.png" : "p3.png",
-                tags: ["Design", "SEO", "Performance"]
-            }));
+        // REMOVED AUTO-GENERATION LOGIC from Admin.
+        // User requesting full control over deletion.
+        // Public page will handle display fallback visually if needed, but Admin/DB should reflect reality.
 
-            savedPortfolio = [...savedPortfolio, ...placeholders];
-            localStorage.setItem('ace_portfolio_items', JSON.stringify(savedPortfolio));
-        }
+        // if (savedPortfolio.length < 30) { ... }
 
         setBlogPosts(savedPosts);
         setPortfolioItems(savedPortfolio);
@@ -115,8 +129,15 @@ const Admin = () => {
         }
 
         setBlogPosts(updatedPosts);
-        localStorage.setItem('ace_blog_posts', JSON.stringify(updatedPosts));
-        setNewPost({ title: '', content: '', image: '', date: new Date().toLocaleDateString('pt-BR') });
+        try {
+            localStorage.setItem('ace_blog_posts', JSON.stringify(updatedPosts));
+            setNewPost({ title: '', content: '', image: '', date: new Date().toLocaleDateString('pt-BR') });
+        } catch (e) {
+            console.error("Storage Error:", e);
+            alert("Memória cheia! O navegador não permite salvar mais dados. Tente excluir postagens antigas ou usar imagens menores.");
+            // Revert state change in UI if save failed to avoid sync mismatch
+            setBlogPosts(blogPosts);
+        }
     };
 
     const handleSaveProject = (e) => {
@@ -140,8 +161,15 @@ const Admin = () => {
         }
 
         setPortfolioItems(updatedPortfolio);
-        localStorage.setItem('ace_portfolio_items', JSON.stringify(updatedPortfolio));
-        setNewProject({ title: '', category: '', image: '' });
+        try {
+            localStorage.setItem('ace_portfolio_items', JSON.stringify(updatedPortfolio));
+            setNewProject({ title: '', category: '', image: '' });
+        } catch (e) {
+            console.error("Storage Error:", e);
+            alert("Limite de armazenamento do navegador atingido! Não é possível adicionar mais itens com imagens pesadas. Tente excluir projetos antigos.");
+            // Revert state to prevent UI lying to user
+            setPortfolioItems(portfolioItems);
+        }
     };
 
     const startEditPost = (index) => {
