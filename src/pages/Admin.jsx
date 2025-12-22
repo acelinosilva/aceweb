@@ -66,8 +66,23 @@ const Admin = () => {
         if (auth === 'true') setIsAuth(true);
 
         const savedPosts = JSON.parse(localStorage.getItem('ace_blog_posts')) || [];
-        const savedPortfolio = JSON.parse(localStorage.getItem('ace_portfolio_items')) || [];
+        let savedPortfolio = JSON.parse(localStorage.getItem('ace_portfolio_items')) || [];
         const savedInst = JSON.parse(localStorage.getItem('ace_inst_data'));
+
+        // FIX: Ensure at least 30 items are shown as requested
+        if (savedPortfolio.length < 30) {
+            const currentCount = savedPortfolio.length;
+            const needed = 30 - currentCount;
+            const placeholders = Array.from({ length: needed }).map((_, i) => ({
+                title: `Projeto Exclusivo ${currentCount + i + 1}`,
+                category: ["E-commerce", "Landing Page", "Institucional", "App Mobile"][i % 4],
+                image: i % 3 === 0 ? "p1.png" : i % 3 === 1 ? "p2.png" : "p3.png",
+                tags: ["Design", "SEO", "Performance"]
+            }));
+
+            savedPortfolio = [...savedPortfolio, ...placeholders];
+            localStorage.setItem('ace_portfolio_items', JSON.stringify(savedPortfolio));
+        }
 
         setBlogPosts(savedPosts);
         setPortfolioItems(savedPortfolio);

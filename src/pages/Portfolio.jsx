@@ -17,14 +17,30 @@ const Portfolio = () => {
             savedProjects = [];
         }
 
-        const dynamicProjects = savedProjects.map(proj => ({
+        const loadedProjects = savedProjects.map(proj => ({
             title: proj.title || "Projeto Aceweb",
             category: proj.category || "Desenvolvimento Web",
             image: proj.image || "p1.png",
             tags: Array.isArray(proj.tags) ? proj.tags : ["Aceweb Elite", "Digital"]
         }));
 
-        setAllProjects(dynamicProjects);
+        // FIX: Ensure at least 30 items for display
+        const totalNeeded = 30;
+        const currentCount = loadedProjects.length;
+
+        let finalProjects = [...loadedProjects];
+
+        if (currentCount < totalNeeded) {
+            const placeholders = Array.from({ length: totalNeeded - currentCount }).map((_, i) => ({
+                title: `Projeto Portfolio ${currentCount + i + 1}`,
+                category: ["E-commerce", "Institucional", "Landing Page", "App Web"][i % 4],
+                image: i % 3 === 0 ? "p1.png" : i % 3 === 1 ? "p2.png" : "p3.png",
+                tags: ["Aceweb Elite", "Conceito"]
+            }));
+            finalProjects = [...finalProjects, ...placeholders];
+        }
+
+        setAllProjects(finalProjects);
     }, []);
 
     const fadeInUp = {
