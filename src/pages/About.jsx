@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Target, Users, Award, Rocket, Shield, Heart } from 'lucide-react';
+import SEO from '../components/SEO';
 import './About.css';
 
 const About = () => {
@@ -22,6 +23,10 @@ const About = () => {
 
     return (
         <div className="about-page">
+            <SEO
+                title="Sobre Nós"
+                description="Conheça a Aceweb, a agência de criação de sites em Brasília focada em design de elite e performance extrema."
+            />
             {/* About Hero */}
             <section className="about-hero">
                 <div className="mesh-bg"></div>

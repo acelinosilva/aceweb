@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NewsGrid from '../components/NewsGrid';
+import SEO from '../components/SEO';
 import './Home.css';
 import { useAsyncImage } from '../hooks/useAsyncImage';
 
@@ -63,7 +64,6 @@ const Home = () => {
             img: p.image
         }));
 
-        // Merge and take top 3
         const merged = [...dynamicItems, ...staticItems].slice(0, 3);
         setRecentProjects(merged);
     }, []);
@@ -136,6 +136,11 @@ const Home = () => {
 
     return (
         <div className="home-page">
+            <SEO
+                title="Agência de Sites no DF"
+                description="Agência especialista em criar sites no DF e landing pages de alta conversão. Elevamos sua autoridade digital com SEO em Brasília e performance extrema."
+                keywords="criação de sites brasília, web design df, site rápido, seo brasília, criação de landing page"
+            />
             {/* Premium Hero Section */}
             <section className="hero">
                 <div className="hero-grid-overlay"></div>

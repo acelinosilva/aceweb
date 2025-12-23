@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './Blog.css';
 import { useAsyncImage } from '../hooks/useAsyncImage';
 
@@ -57,6 +58,10 @@ const Blog = () => {
 
     return (
         <div className="blog-page">
+            <SEO
+                title="Blog News & Insights"
+                description="Fique por dentro das últimas tendências de design, tecnologia e marketing digital no Blog da Aceweb."
+            />
             <section className="blog-hero">
                 <div className="hero-grid-overlay"></div>
                 <div className="container">

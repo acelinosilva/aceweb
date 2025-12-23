@@ -1,43 +1,55 @@
+import { Suspense, lazy } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import Portfolio from './pages/Portfolio';
-import Admin from './pages/Admin';
-import Blog from './pages/Blog';
-import ArticleDetail from './pages/ArticleDetail';
-import LocationLanding from './pages/LocationLanding';
+import LoadingSpinner from './components/LoadingSpinner';
+import ScrollToTop from './components/ScrollToTop';
+
+// Lazy Load Pages
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
+const Admin = lazy(() => import('./pages/Admin'));
+const Blog = lazy(() => import('./pages/Blog'));
+const ArticleDetail = lazy(() => import('./pages/ArticleDetail'));
+const LocationLanding = lazy(() => import('./pages/LocationLanding'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
     return (
         <Router>
             <div className="app-container">
-                <Routes>
-                    <Route path="/admin" element={<Admin />} />
-                    <Route path="*" element={
-                        <>
-                            <Navbar />
-                            <main>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/sobre" element={<About />} />
-                                    <Route path="/servicos" element={<Services />} />
-                                    <Route path="/portfolio" element={<Portfolio />} />
-                                    <Route path="/contato" element={<Contact />} />
-                                    <Route path="/blog" element={<Blog />} />
-                                    <Route path="/blog/:id" element={<ArticleDetail />} />
-                                    <Route path="/locais/:slug" element={<LocationLanding />} />
-                                </Routes>
-                            </main>
-                            <Footer />
-                            <WhatsAppButton />
-                        </>
-                    } />
-                </Routes>
+                <Suspense fallback={<LoadingSpinner />}>
+                    <Routes>
+                        <Route path="/admin" element={<Admin />} />
+                        <Route path="*" element={
+                            <>
+                                <Navbar />
+                                <main>
+                                    <Suspense fallback={<LoadingSpinner />}>
+                                        <Routes>
+                                            <Route path="/" element={<Home />} />
+                                            <Route path="/sobre" element={<About />} />
+                                            <Route path="/servicos" element={<Services />} />
+                                            <Route path="/portfolio" element={<Portfolio />} />
+                                            <Route path="/contato" element={<Contact />} />
+                                            <Route path="/blog" element={<Blog />} />
+                                            <Route path="/blog/:id" element={<ArticleDetail />} />
+                                            <Route path="/locais/:slug" element={<LocationLanding />} />
+                                            <Route path="*" element={<NotFound />} />
+                                        </Routes>
+                                    </Suspense>
+                                </main>
+                                <Footer />
+                                <WhatsAppButton />
+                                <ScrollToTop />
+                            </>
+                        } />
+                    </Routes>
+                </Suspense>
             </div>
         </Router>
     );

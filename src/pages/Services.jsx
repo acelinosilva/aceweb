@@ -4,6 +4,7 @@ import {
     Layers, BarChart3, ShieldCheck, Zap
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './Services.css';
 
 const Services = () => {
@@ -43,6 +44,10 @@ const Services = () => {
 
     return (
         <div className="services-page">
+            <SEO
+                title="Nossos Serviços"
+                description="Confira nossos serviços de criação de sites institucionais, landing pages de alta conversão e SEO em Brasília."
+            />
             {/* Services Hero */}
             <section className="services-hero">
                 <div className="mesh-bg"></div>

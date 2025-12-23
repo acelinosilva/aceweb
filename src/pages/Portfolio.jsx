@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, MousePointer2 } from 'lucide-react';
+import SEO from '../components/SEO';
 import './Portfolio.css';
 import { useAsyncImage } from '../hooks/useAsyncImage';
 
@@ -60,7 +61,6 @@ const Portfolio = () => {
             tags: Array.isArray(proj.tags) ? proj.tags : ["Aceweb Elite", "Digital"]
         }));
 
-        // FIX: Ensure at least 30 items for display
         const totalNeeded = 30;
         const currentCount = loadedProjects.length;
 
@@ -78,6 +78,7 @@ const Portfolio = () => {
 
         setAllProjects(finalProjects);
     }, []);
+    // ... existing code ...
 
     const fadeInUp = {
         initial: { opacity: 0, y: 30 },
@@ -88,6 +89,10 @@ const Portfolio = () => {
 
     return (
         <div className="portfolio-page">
+            <SEO
+                title="Nosso Portfólio"
+                description="Conheça nossos projetos recentes. Criação de Sites, Landing Pages e E-commerce em Brasília com design exclusivo."
+            />
             {/* Portfolio Hero */}
             <section className="portfolio-hero">
                 <div className="mesh-bg"></div>

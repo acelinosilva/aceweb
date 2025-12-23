@@ -2,11 +2,18 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowLeft, Share2 } from 'lucide-react';
+import SEO from '../components/SEO';
 import './ArticleDetail.css';
 
 const ArticleDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
+
+    const stripHtml = (html) => {
+        const tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+    };
 
     useEffect(() => {
         const savedPosts = JSON.parse(localStorage.getItem('ace_blog_posts')) || [];
@@ -15,19 +22,7 @@ const ArticleDetail = () => {
 
         if (article) {
             setPost(article);
-
-            // --- SEO Optmization ---
-            // 1. Dynamic Title
-            document.title = `${article.title} | Blog Aceweb`;
-
-            // 2. Dynamic Meta Description
-            let metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) {
-                const plainText = stripHtml(article.content).substring(0, 160);
-                metaDesc.setAttribute('content', plainText);
-            }
-
-            // 3. JSON-LD Structured Data for Google
+            // 3. JSON-LD Structured Data for Google (kept for deeper schema)
             const schemaData = {
                 "@context": "https://schema.org",
                 "@type": "BlogPosting",
@@ -48,19 +43,12 @@ const ArticleDetail = () => {
             document.head.appendChild(script);
 
             return () => {
-                // Cleanup on unmount
                 const oldScript = document.getElementById('json-ld-article');
                 if (oldScript) oldScript.remove();
             };
         }
         window.scrollTo(0, 0);
     }, [id]);
-
-    const stripHtml = (html) => {
-        const tmp = document.createElement("DIV");
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || "";
-    };
 
     if (!post) {
         return (
@@ -73,7 +61,14 @@ const ArticleDetail = () => {
 
     return (
         <div className="article-detail-page">
+            <SEO
+                title={post.title}
+                description={stripHtml(post.content).substring(0, 160)}
+                image={post.image}
+                type="article"
+            />
             <div className="container narrow-container">
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
