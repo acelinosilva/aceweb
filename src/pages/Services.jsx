@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
     Layout, Globe, Search, Settings, Clock, CheckCircle2,
@@ -76,29 +77,47 @@ const Services = () => {
             <section className="section-padding">
                 <div className="container">
                     <div className="services-grid-detailed">
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                {...fadeInUp}
-                                transition={{ delay: index * 0.1 }}
-                                className="service-detail-card glass-card neural-border"
-                                whileHover={{ y: -10 }}
-                            >
-                                <div className="service-header-icon">
-                                    {service.icon}
-                                    <div className="icon-glow"></div>
-                                </div>
-                                <h3>{service.title}</h3>
-                                <p>{service.desc}</p>
-                                <div className="feature-list">
-                                    {service.features.map((feature, i) => (
-                                        <div key={i} className="feature-tag">
-                                            <CheckCircle2 size={16} /> {feature}
-                                        </div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
+                        {services.map((service, index) => {
+                            const [isHovered, setIsHovered] = useState(false);
+                            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    {...fadeInUp}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="service-detail-card glass-card neural-border spotlight-group"
+                                    whileHover={{ y: -10 }}
+                                    onMouseMove={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                                        setIsHovered(true);
+                                    }}
+                                    onMouseLeave={() => setIsHovered(false)}
+                                >
+                                    <div
+                                        className="spotlight-glow"
+                                        style={{
+                                            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(68, 208, 93, 0.1), transparent 40%)`,
+                                            opacity: isHovered ? 1 : 0
+                                        }}
+                                    />
+                                    <div className="service-header-icon">
+                                        {service.icon}
+                                        <div className="icon-glow"></div>
+                                    </div>
+                                    <h3>{service.title}</h3>
+                                    <p>{service.desc}</p>
+                                    <div className="feature-list">
+                                        {service.features.map((feature, i) => (
+                                            <div key={i} className="feature-tag">
+                                                <CheckCircle2 size={16} /> {feature}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
