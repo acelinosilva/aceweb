@@ -1,3 +1,21 @@
+@keyframes blink {
+
+    from,
+    to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.cursor-blink {
+    color: var(--primary-color);
+    font-weight: 300;
+    animation: blink 1s step-end infinite;
+}
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -61,12 +79,23 @@
 }
 
 .hero-title-elite {
-    font-size: clamp(3.2rem, 6vw, 5.2rem);
+    font-size: clamp(2.4rem, 9vw, 5.2rem);
     line-height: 1.1;
     font-weight: 950;
     margin-bottom: 2rem;
     color: #fff;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
+    word-spacing: 2px;
+    overflow-wrap: break-word;
+    min-height: 2.2em;
+}
+
+@media (max-width: 968px) {
+    .hero-title-elite {
+        text-align: center;
+        letter-spacing: -1px;
+        min-height: auto;
+    }
 }
 
 .outline-text {
@@ -224,6 +253,52 @@
     height: 6px;
     background: var(--primary-color);
     border-radius: 2px;
+}
+
+/* Premium Stats Section */
+.stats-section-premium {
+    margin-top: -50px;
+    position: relative;
+    z-index: 50;
+}
+
+.stats-grid-premium {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 4rem;
+    border-radius: 30px;
+}
+
+.stat-item-premium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-item-premium span:first-child {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+.stat-item-premium span:last-child {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-sep {
+    width: 1px;
+    height: 50px;
+    background: var(--glass-border);
+}
+
+.tech-marquee-section {
+    padding-top: 5rem;
 }
 
 .hero-grid-overlay {
@@ -572,6 +647,49 @@
     background: radial-gradient(circle at 10%, rgba(68, 208, 93, 0.05) 0%, transparent 40%);
 }
 
+/* Google Summary Badge */
+.google-summary-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.google-icon-box {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.summary-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stars-row {
+    display: flex;
+    gap: 2px;
+}
+
+.summary-info span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+/* Testimonials Grid Update */
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -585,11 +703,14 @@
     flex-direction: column;
     gap: 2rem;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
 .testimonial-card:hover {
     transform: translateY(-10px);
     background: rgba(68, 208, 93, 0.05);
+    border-color: rgba(68, 208, 93, 0.3);
 }
 
 .testimonial-header {
@@ -597,25 +718,28 @@
     align-items: center;
     gap: 1.2rem;
     position: relative;
+    z-index: 2;
 }
 
 .avatar-circle {
-    width: 50px;
-    height: 50px;
-    background: var(--primary-color);
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--primary-color), #fff);
     color: #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(68, 208, 93, 0.3);
 }
 
 .client-info h4 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 0.2rem;
+    color: #fff;
 }
 
 .client-info span {
@@ -631,18 +755,19 @@
 
 .testimonial-body {
     position: relative;
+    z-index: 2;
 }
 
 .quote-icon {
     color: var(--primary-color);
-    opacity: 0.2;
-    margin-bottom: 1rem;
+    opacity: 0.3;
+    margin-bottom: 1.2rem;
 }
 
 .testimonial-body p {
     color: var(--text-secondary);
     line-height: 1.8;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-style: italic;
     margin: 0;
 }
@@ -695,55 +820,110 @@
 }
 
 @media (max-width: 968px) {
-    .about-grid-home {
-        grid-template-columns: 1fr;
+    .hero-container-flex {
+        flex-direction: column;
+        text-align: center;
         gap: 3rem;
     }
 
-    .cta-final {
+    .hero-text-side {
+        order: 2;
+        width: 100%;
+        display: flex;
         flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 4rem 2rem;
     }
 
-    .rocket-icon {
-        margin-top: 3rem;
+    .hero-subtitle-elite {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .cta-btns {
+    .hero-btns-elite {
+        justify-content: center;
+    }
+
+    .hero-visual-side {
+        order: 1;
+        width: 100%;
+        height: 400px;
+    }
+
+    .neural-sphere-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .float-card {
+        min-width: 200px;
+        padding: 0.8rem;
+    }
+
+    .card-1 {
+        right: -10%;
+        top: -10%;
+    }
+
+    .card-2 {
+        left: -10%;
+        bottom: 0%;
+    }
+
+    .card-3 {
+        right: -15%;
+        top: 40%;
+    }
+
+    .about-grid-premium {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .stats-grid-premium {
         flex-direction: column;
+        gap: 2rem;
+        padding: 2.5rem;
+    }
+
+    .stat-sep {
+        width: 100%;
+        height: 1px;
+    }
+
+    .stat-item-premium span:first-child {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-btns {
-        flex-direction: column;
-        padding: 0 1rem;
+    .hero {
+        padding-top: 120px;
     }
 
-    .hero-stats-container {
+    .hero-btns-elite {
         flex-direction: column;
-        gap: 2.5rem;
-        padding: 2.5rem 2rem;
         width: 100%;
-        max-width: 400px;
+        padding: 0 1.5rem;
     }
 
-    .hero-stat {
-        flex-direction: column;
+    .btn-elite-primary,
+    .btn-elite-outline {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cta-final {
+        padding: 3rem 1.5rem;
         text-align: center;
-        width: 100%;
-    }
-
-    .stat-sep {
-        display: none;
-    }
-
-    .hero h1 {
-        font-size: 3.2rem;
     }
 
     .cta-final-content h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+
+    .services-grid-home {
+        grid-template-columns: 1fr;
     }
 }

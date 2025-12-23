@@ -1,0 +1,30 @@
+.marquee-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 2rem 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+}
+
+.marquee-item {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+.marquee-item:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}

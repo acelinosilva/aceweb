@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import RevealText from '../components/RevealText';
 import './Services.css';
 
 const Services = () => {
@@ -43,7 +44,12 @@ const Services = () => {
     ];
 
     return (
-        <div className="services-page">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="services-page"
+        >
             <SEO
                 title="Nossos Serviços"
                 description="Confira nossos serviços de criação de sites institucionais, landing pages de alta conversão e SEO em Brasília."
@@ -58,7 +64,9 @@ const Services = () => {
                         className="text-center"
                     >
                         <span className="badge">Nossas Soluções no DF</span>
-                        <h1 className="text-gradient">Criação de Sites em <span>Brasília</span></h1>
+                        <RevealText>
+                            <h1 className="text-gradient">Criação de Sites em <span>Brasília</span></h1>
+                        </RevealText>
                         <p className="hero-subtitle">Agência especializada em criar sites no Distrito Federal com tecnologia de elite e foco em conversão para empresas de Brasília.</p>
                     </motion.div>
                 </div>
@@ -74,6 +82,7 @@ const Services = () => {
                                 {...fadeInUp}
                                 transition={{ delay: index * 0.1 }}
                                 className="service-detail-card glass-card neural-border"
+                                whileHover={{ y: -10 }}
                             >
                                 <div className="service-header-icon">
                                     {service.icon}
@@ -135,7 +144,13 @@ const Services = () => {
                             <Clock size={48} className="text-primary" />
                             <h2>Velocidade que <span>Impulsiona</span></h2>
                             <p>Entregamos seu projeto completo em até 7 dias úteis. Sem desculpas, apenas resultados.</p>
-                            <a href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!" className="btn btn-primary">Começar meu projeto</a>
+                            <motion.a
+                                whileHover={{ scale: 1.05 }}
+                                href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!"
+                                className="btn btn-primary"
+                            >
+                                Começar meu projeto
+                            </motion.a>
                         </div>
                         <div className="banner-icon-bg">
                             <Zap size={200} />
@@ -143,7 +158,7 @@ const Services = () => {
                     </motion.div>
                 </div>
             </section>
-        </div>
+        </motion.div>
     );
 };
 

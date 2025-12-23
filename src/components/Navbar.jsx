@@ -39,11 +39,17 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
+
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            setScrollProgress(scrolled);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -53,11 +59,15 @@ const Navbar = () => {
     useEffect(() => {
         setIsOpen(false);
         setDropdownOpen(false);
+        setScrollProgress(0);
         window.scrollTo(0, 0);
     }, [location]);
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isOpen ? 'open' : ''}`}>
+            <div className="scroll-progress-container">
+                <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }}></div>
+            </div>
             <div className="container nav-content">
                 <Link to="/" className="logo">
                     <img src="logo.png" alt="Aceweb Logo" className="logo-img" />
@@ -70,11 +80,12 @@ const Navbar = () => {
 
                     <div
                         className={`nav-dropdown-container ${dropdownOpen ? 'active' : ''}`}
-                        onMouseEnter={() => setDropdownOpen(true)}
-                        onMouseLeave={() => setDropdownOpen(false)}
+                        onMouseEnter={() => window.innerWidth > 768 && setDropdownOpen(true)}
+                        onMouseLeave={() => window.innerWidth > 768 && setDropdownOpen(false)}
+                        onClick={() => window.innerWidth <= 768 && setDropdownOpen(!dropdownOpen)}
                     >
                         <span className="nav-item-dropdown">
-                            Locais <ChevronDown size={14} />
+                            Locais <ChevronDown size={14} className={dropdownOpen ? 'rotate-180' : ''} />
                         </span>
                         <div className="nav-dropdown-menu">
                             <div className="dropdown-grid">

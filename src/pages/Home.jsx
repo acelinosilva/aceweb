@@ -8,17 +8,44 @@ import {
 import { Link } from 'react-router-dom';
 import NewsGrid from '../components/NewsGrid';
 import SEO from '../components/SEO';
+import Marquee from '../components/Marquee';
+import Counter from '../components/Counter';
+import RevealText from '../components/RevealText';
 import './Home.css';
 import { useAsyncImage } from '../hooks/useAsyncImage';
 
 const RecentProjectCard = ({ project, index, fadeInUp }) => {
     const imageUrl = useAsyncImage(project.img);
+    const [spotlight, setSpotlight] = useState({ x: 0, y: 0, opacity: 0 });
+
+    const handleMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        setSpotlight({ x, y, opacity: 1 });
+    };
+
+    const handleMouseLeave = () => {
+        setSpotlight(prev => ({ ...prev, opacity: 0 }));
+    };
+
     return (
         <motion.div
             {...fadeInUp}
             transition={{ delay: index * 0.1 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             className="highlight-card-mini glass-card neural-border"
+            style={{ position: 'relative', overflow: 'hidden' }}
         >
+            <div
+                className="spotlight-glow"
+                style={{
+                    background: `radial-gradient(400px circle at ${spotlight.x}px ${spotlight.y}px, rgba(68, 208, 93, 0.1), transparent 40%)`,
+                    opacity: spotlight.opacity
+                }}
+            />
             <div className="highlight-img">
                 <img src={imageUrl || project.img} alt={project.title} />
                 <div className="highlight-overlay">
@@ -40,22 +67,18 @@ const Home = () => {
         homeAboutText: 'A ACEWEB é referência em criação de sites em Brasília. Atendemos todo o Distrito Federal e o Brasil, desenvolvendo soluções digitais que colocam sua empresa no topo das buscas. Se você busca criar sites profissionais em Brasília, está no lugar certo.'
     });
 
-    const [recentProjects, setRecentProjects] = useState([
-        { title: "Urban Haven", cat: "Luxury Real Estate", img: "p1.png" },
-        { title: "PeakFlow", cat: "Fitness App", img: "p2.png" },
-        { title: "Aurora Tech", cat: "Tech Startup", img: "p3.png" }
-    ]);
+    const [recentProjects, setRecentProjects] = useState([]);
+    const [typedTagline, setTypedTagline] = useState('');
 
     useEffect(() => {
         const savedInst = JSON.parse(localStorage.getItem('ace_inst_data'));
         if (savedInst) setInstData(prev => ({ ...prev, ...savedInst }));
 
         const savedProjects = JSON.parse(localStorage.getItem('ace_portfolio_items')) || [];
-
         const staticItems = [
-            { title: "Urban Haven", cat: "Luxury Real Estate", img: "p1.png" },
-            { title: "PeakFlow", cat: "Fitness App", img: "p2.png" },
-            { title: "Aurora Tech", cat: "Tech Startup", img: "p3.png" }
+            { title: "Ligiê Odontologia", cat: "Clínica Médica", img: "ligie.jpg" },
+            { title: "Unity IT", cat: "Tecnologia", img: "unityit.jpg" },
+            { title: "Lago Norte Eventos", cat: "Serviços", img: "lagonorte.jpg" }
         ];
 
         const dynamicItems = savedProjects.map(p => ({
@@ -64,8 +87,18 @@ const Home = () => {
             img: p.image
         }));
 
-        const merged = [...dynamicItems, ...staticItems].slice(0, 3);
+        const merged = [...staticItems, ...dynamicItems].slice(0, 3);
         setRecentProjects(merged);
+
+        // Simple Typewriter Effect
+        let i = 0;
+        const tagline = savedInst?.heroTagline || 'Criação de Sites em Brasília';
+        const timer = setInterval(() => {
+            setTypedTagline(tagline.slice(0, i));
+            i++;
+            if (i > tagline.length) clearInterval(timer);
+        }, 50);
+        return () => clearInterval(timer);
     }, []);
 
     const fadeInUp = {
@@ -135,7 +168,12 @@ const Home = () => {
     ];
 
     return (
-        <div className="home-page">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="home-page"
+        >
             <SEO
                 title="Agência de Sites no DF"
                 description="Agência especialista em criar sites no DF e landing pages de alta conversão. Elevamos sua autoridade digital com SEO em Brasília e performance extrema."
@@ -164,7 +202,7 @@ const Home = () => {
                             transition={{ delay: 0.2, duration: 0.8 }}
                             className="hero-title-elite"
                         >
-                            {instData.heroTagline}
+                            {typedTagline}<span className="cursor-blink">|</span>
                         </motion.h1>
 
                         <motion.p
@@ -181,12 +219,18 @@ const Home = () => {
                             transition={{ delay: 0.6, duration: 0.8 }}
                             className="hero-btns-elite"
                         >
-                            <a href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!" className="btn-elite-primary pulse-glow">
+                            <motion.a
+                                whileHover={{ scale: 1.05, x: 5 }}
+                                href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!"
+                                className="btn-elite-primary pulse-glow"
+                            >
                                 Iniciar Projeto <MousePointer2 size={22} />
-                            </a>
-                            <Link to="/portfolio" className="btn-elite-outline">
-                                Ver Cases <ArrowRight size={22} />
-                            </Link>
+                            </motion.a>
+                            <motion.div whileHover={{ scale: 1.05, x: 5 }}>
+                                <Link to="/portfolio" className="btn-elite-outline">
+                                    Ver Cases <ArrowRight size={22} />
+                                </Link>
+                            </motion.div>
                         </motion.div>
 
                         <motion.div
@@ -217,7 +261,7 @@ const Home = () => {
 
                             {/* Floating Feature Cards */}
                             <motion.div
-                                animate={{ y: [0, -20, 0] }}
+                                animate={{ y: [0, -20, 0], x: [0, 5, 0] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="float-card card-1 glass-card"
                             >
@@ -229,7 +273,7 @@ const Home = () => {
                             </motion.div>
 
                             <motion.div
-                                animate={{ y: [0, 20, 0] }}
+                                animate={{ y: [0, 20, 0], x: [0, -5, 0] }}
                                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                                 className="float-card card-2 glass-card"
                             >
@@ -241,7 +285,7 @@ const Home = () => {
                             </motion.div>
 
                             <motion.div
-                                animate={{ y: [0, -15, 0] }}
+                                animate={{ y: [0, -15, 0], x: [0, 8, 0] }}
                                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                                 className="float-card card-3 glass-card"
                             >
@@ -266,12 +310,52 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Premium Stats Section */}
+            <section className="stats-section-premium">
+                <div className="container">
+                    <div className="stats-grid-premium glass-card">
+                        <div className="stat-item-premium">
+                            <Counter end={100} suffix="+" />
+                            <span>Projetos Entregues</span>
+                        </div>
+                        <div className="stat-sep"></div>
+                        <div className="stat-item-premium">
+                            <Counter end={5} suffix="+" />
+                            <span>Anos no Mercado</span>
+                        </div>
+                        <div className="stat-sep"></div>
+                        <div className="stat-item-premium">
+                            <Counter end={98} suffix="%" />
+                            <span>Clientes Satisfeitos</span>
+                        </div>
+                        <div className="stat-sep"></div>
+                        <div className="stat-item-premium">
+                            <Counter end={12} suffix="H" />
+                            <span>Suporte ágil</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Technology Marquee */}
+            <section className="tech-marquee-section">
+                <Marquee
+                    items={[
+                        "REACT.JS", "VITE", "NODE.JS", "TAILWIND", "FIREBASE",
+                        "AWS", "GOOGLE CLOUD", "DOCKER", "TYPESCRIPT", "PYTHON"
+                    ]}
+                    speed={30}
+                />
+            </section>
+
             {/* Recent Portfolio Section */}
             <section className="section-padding portfolio-highlights">
                 <div className="container">
                     <header className="text-center mb-5">
                         <span className="badge">Destaques</span>
-                        <h2 className="section-title">Portfólio <span>Recente</span></h2>
+                        <RevealText>
+                            <h2 className="section-title">Portfólio <span>Recente</span></h2>
+                        </RevealText>
                     </header>
 
                     <div className="highlights-grid">
@@ -355,7 +439,9 @@ const Home = () => {
                 <div className="container">
                     <header className="home-services-header text-center">
                         <span className="badge">Especialidades</span>
-                        <h2 className="section-title">O que fazemos de <span>melhor</span></h2>
+                        <RevealText>
+                            <h2 className="section-title">O que fazemos de <span>melhor</span></h2>
+                        </RevealText>
                     </header>
 
                     <div className="services-grid-home">
@@ -385,36 +471,79 @@ const Home = () => {
                 <div className="container">
                     <header className="text-center mb-5">
                         <span className="badge">Depoimentos</span>
-                        <h2 className="section-title">Aprovado por quem <span>confia</span></h2>
-                        <p className="description-premium max-700 mx-auto">Confira o que nossos clientes dizem sobre a experiência de transformar seus negócios com a ACEWEB.</p>
+                        <RevealText>
+                            <h2 className="section-title">Aprovado por quem <span>confia</span></h2>
+                        </RevealText>
+
+                        {/* Google Review Summary Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            className="google-summary-badge"
+                        >
+                            <div className="google-icon-box">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+                                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+                                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                                </svg>
+                            </div>
+                            <div className="summary-info">
+                                <div className="stars-row">
+                                    {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#FBBC05" stroke="none" />)}
+                                </div>
+                                <span>5.0 de 5 no Google (50+ avaliações)</span>
+                            </div>
+                        </motion.div>
                     </header>
 
                     <div className="testimonials-grid">
-                        {testimonials.map((t, index) => (
-                            <motion.div
-                                key={index}
-                                {...fadeInUp}
-                                transition={{ delay: index * 0.1 }}
-                                className="testimonial-card glass-card neural-border"
-                            >
-                                <div className="testimonial-header">
-                                    <div className="avatar-circle">{t.initials}</div>
-                                    <div className="client-info">
-                                        <h4>{t.name}</h4>
-                                        <span>{t.date}</span>
+                        {testimonials.map((t, index) => {
+                            const [isHovered, setIsHovered] = useState(false);
+                            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    {...fadeInUp}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="testimonial-card glass-card neural-border spotlight-group"
+                                    onMouseMove={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                                        setIsHovered(true);
+                                    }}
+                                    onMouseLeave={() => setIsHovered(false)}
+                                >
+                                    <div
+                                        className="spotlight-glow"
+                                        style={{
+                                            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(68, 208, 93, 0.1), transparent 40%)`,
+                                            opacity: isHovered ? 1 : 0
+                                        }}
+                                    />
+
+                                    <div className="testimonial-header">
+                                        <div className="avatar-circle">{t.initials}</div>
+                                        <div className="client-info">
+                                            <h4>{t.name}</h4>
+                                            <span>{t.date}</span>
+                                        </div>
+                                        <div className="google-stars">
+                                            {[...Array(t.rating)].map((_, i) => (
+                                                <Star key={i} size={14} fill="var(--primary-color)" stroke="none" />
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div className="google-stars">
-                                        {[...Array(t.rating)].map((_, i) => (
-                                            <Star key={i} size={14} fill="var(--primary-color)" stroke="none" />
-                                        ))}
+                                    <div className="testimonial-body">
+                                        <Quote size={24} className="quote-icon" />
+                                        <p>{t.text}</p>
                                     </div>
-                                </div>
-                                <div className="testimonial-body">
-                                    <Quote size={24} className="quote-icon" />
-                                    <p>{t.text}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -442,7 +571,7 @@ const Home = () => {
                     </motion.div>
                 </div>
             </section>
-        </div>
+        </motion.div>
     );
 };
 
