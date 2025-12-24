@@ -52,8 +52,10 @@ const Services = () => {
             className="services-page"
         >
             <SEO
-                title="Nossos Serviços"
-                description="Confira nossos serviços de criação de sites institucionais, landing pages de alta conversão e SEO em Brasília."
+                title="Criação de Sites e SEO em Brasília-DF"
+                description="Serviços profissionais de Criação de Sites, Landing Pages de alta conversão e SEO em Brasília. Coloque sua empresa no topo do Google com a Aceweb."
+                keywords="criação de sites brasília, seo brasília, agência de marketing digital df, criar landing page df, otimização de sites brasília"
+                url="/servicos"
             />
             {/* Services Hero */}
             <section className="services-hero">

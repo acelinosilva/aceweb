@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://acelinosilva.github.io/aceweb/sitemap.xml
+Sitemap: https://www.acewebsites.com.br/sitemap.xml

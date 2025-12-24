@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, keywords, image, url, type = 'website' }) => {
-    const siteName = 'Aceweb - Criação de Sites';
-    const baseUrl = 'https://aceweb.com.br'; // Replace with actual domain if known, or handle dynamically
-    const fullUrl = url ? `${baseUrl}${url}` : baseUrl;
-    const metaTitle = title ? `${title} | ${siteName}` : siteName;
+const SEO = ({ title, description, keywords, image, url, type = 'website', canonical }) => {
+    const siteName = 'Aceweb Brasília';
+    const baseUrl = 'https://www.acewebsites.com.br'; // Correct production domain
+    const fullUrl = url ? `${baseUrl}/#${url}` : baseUrl;
+    const metaTitle = title ? `${title} | ${siteName}` : 'Criação de Sites em Brasília-DF | Aceweb Agência Digital';
+    const canonicalUrl = canonical || fullUrl;
 
     return (
         <Helmet>
@@ -13,6 +14,7 @@ const SEO = ({ title, description, keywords, image, url, type = 'website' }) => 
             <title>{metaTitle}</title>
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
+            <link rel="canonical" href={canonicalUrl} />
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={type} />
@@ -20,6 +22,7 @@ const SEO = ({ title, description, keywords, image, url, type = 'website' }) => 
             <meta property="og:title" content={metaTitle} />
             <meta property="og:description" content={description} />
             {image && <meta property="og:image" content={image} />}
+            <meta property="og:site_name" content="Aceweb" />
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -27,6 +30,11 @@ const SEO = ({ title, description, keywords, image, url, type = 'website' }) => 
             <meta name="twitter:title" content={metaTitle} />
             <meta name="twitter:description" content={description} />
             {image && <meta name="twitter:image" content={image} />}
+
+            {/* Additional SEO Tags */}
+            <meta name="robots" content="index, follow" />
+            <meta name="language" content="Portuguese" />
+            <meta name="author" content="Aceweb" />
         </Helmet>
     );
 };
@@ -37,7 +45,8 @@ SEO.propTypes = {
     keywords: PropTypes.string,
     image: PropTypes.string,
     url: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    canonical: PropTypes.string
 };
 
 export default SEO;

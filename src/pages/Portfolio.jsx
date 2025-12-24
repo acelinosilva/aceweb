@@ -175,8 +175,10 @@ const Portfolio = () => {
             className="portfolio-page"
         >
             <SEO
-                title="Portfólio de Sites"
-                description="Conheça nossos últimos projetos de criação de sites, landing pages e e-commerce em Brasília e em todo o Brasil."
+                title="Portfólio de Sites Criados em Brasília"
+                description="Veja os projetos de criação de sites, landing pages e soluções digitais desenvolvidas pela Aceweb para empresas de Brasília-DF e de todo o Brasil."
+                keywords="portfólio criação de sites, sites criados em brasília, exemplos de landing pages, cases de sucesso web design df"
+                url="/portfolio"
             />
             <section className="portfolio-hero">
                 <div className="mesh-bg"></div>

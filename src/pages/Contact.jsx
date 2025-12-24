@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle, MessageSquare, Zap, Clock, Globe } from 'lucide-react';
+import SEO from '../components/SEO';
 import './Contact.css';
 
 const Contact = () => {
@@ -25,6 +26,12 @@ const Contact = () => {
 
     return (
         <div className="contact-page">
+            <SEO
+                title="Contato para Criação de Sites em Brasília-DF"
+                description="Entre em contato com a Aceweb para solicitar um orçamento de criação de site, landing page ou consultoria de SEO em Brasília. Atendimento rápido e especialista."
+                keywords="contato criação de sites brasília, orçamento site brasília, agência marketing digital df, falar com aceweb"
+                url="/contato"
+            />
             {/* High-End Contact Hero */}
             <section className="contact-hero">
                 <div className="hero-grid-overlay"></div>

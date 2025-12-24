@@ -70,7 +70,7 @@ const Navbar = () => {
             </div>
             <div className="container nav-content">
                 <Link to="/" className="logo">
-                    <img src="logo.png" alt="Aceweb Logo" className="logo-img" />
+                    <img src="logo.png" alt="Aceweb - Agência de Criação de Sites em Brasília" className="logo-img" />
                 </Link>
 
                 <div className={`nav-links ${isOpen ? 'active' : ''}`}>

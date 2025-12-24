@@ -175,9 +175,10 @@ const Home = () => {
             className="home-page"
         >
             <SEO
-                title="Agência de Sites no DF"
-                description="Agência especialista em criar sites no DF e landing pages de alta conversão. Elevamos sua autoridade digital com SEO em Brasília e performance extrema."
-                keywords="criação de sites brasília, web design df, site rápido, seo brasília, criação de landing page"
+                title="Criação de sites em Brasília-DF"
+                description="Agência especialista em Criação de Sites em Brasília-DF e Landing Pages de alta conversão. Elevamos sua autoridade digital com SEO local e performance extrema."
+                keywords="criação de sites em brasília-df, criar sites brasília, agência de sites df, web design brasília, seo brasília, landing page brasília, desenvolvimento web df"
+                url="/"
             />
             {/* Premium Hero Section */}
             <section className="hero">

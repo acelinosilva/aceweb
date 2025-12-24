@@ -24,8 +24,10 @@ const About = () => {
     return (
         <div className="about-page">
             <SEO
-                title="Sobre Nós"
-                description="Conheça a Aceweb, a agência de criação de sites em Brasília focada em design de elite e performance extrema."
+                title="A Agência de Criação de Sites em Brasília-DF"
+                description="Conheça a Aceweb, a agência de criação de sites em Brasília-DF focada em design de elite, performance extrema e resultados reais para nossos clientes."
+                keywords="agência de sites brasília, sobre aceweb, criação de sites profissionais df, web design brasília"
+                url="/sobre"
             />
             {/* About Hero */}
             <section className="about-hero">
