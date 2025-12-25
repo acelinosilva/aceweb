@@ -203,6 +203,7 @@ const Home = () => {
                             transition={{ delay: 0.2, duration: 0.8 }}
                             className="hero-title-elite"
                         >
+                            <span className="sr-only">Aceweb - Criação de Sites Profissionais em Brasília</span>
                             {typedTagline}<span className="cursor-blink">|</span>
                         </motion.h1>
 
@@ -211,8 +212,9 @@ const Home = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.8 }}
                             className="hero-subtitle-elite"
-                            dangerouslySetInnerHTML={{ __html: instData.heroSubtitle }}
-                        ></motion.p>
+                        >
+                            Especialistas em <strong>Criação de Sites em Brasília</strong> e Landing Pages que convertem cliques em faturamento. Tecnologia de ponta para elevar sua autoridade no DF.
+                        </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -221,32 +223,36 @@ const Home = () => {
                             className="hero-btns-elite"
                         >
                             <motion.a
-                                whileHover={{ scale: 1.05, x: 5 }}
-                                href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!"
+                                whileHover={{ scale: 1.05 }}
+                                href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site!"
                                 className="btn-elite-primary pulse-glow"
                             >
-                                Iniciar Projeto <MousePointer2 size={22} />
+                                Iniciar meu Site Profissional <Rocket size={20} />
                             </motion.a>
-                            <motion.div whileHover={{ scale: 1.05, x: 5 }}>
-                                <Link to="/portfolio" className="btn-elite-outline">
-                                    Ver Cases <ArrowRight size={22} />
-                                </Link>
-                            </motion.div>
+                            <Link to="/portfolio" className="btn-elite-outline">
+                                Ver Portfólio <ArrowRight size={20} />
+                            </Link>
                         </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1, duration: 1 }}
-                            className="trusted-by"
+                            className="hero-trust-indicators"
                         >
-                            <span className="trusted-text">Aprovado por mais de 100+ empresas</span>
-                            <div className="trusted-stars">
-                                <Zap size={16} fill="var(--primary-color)" />
-                                <Zap size={16} fill="var(--primary-color)" />
-                                <Zap size={16} fill="var(--primary-color)" />
-                                <Zap size={16} fill="var(--primary-color)" />
-                                <Zap size={16} fill="var(--primary-color)" />
+                            <div className="agent-avatars">
+                                <div className="avatar-stack">
+                                    <img src="https://ui-avatars.com/api/?name=User1&background=44D05D&color=000" alt="Cliente satisfeito" />
+                                    <img src="https://ui-avatars.com/api/?name=User2&background=38b84d&color=000" alt="Empresa atendida" />
+                                    <img src="https://ui-avatars.com/api/?name=User3&background=2fa841&color=000" alt="Site profissional" />
+                                    <div className="avatar-more">+100</div>
+                                </div>
+                                <div className="trust-text-stack">
+                                    <div className="stars-row">
+                                        {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#FBBC05" stroke="none" />)}
+                                    </div>
+                                    <span>Líder em satisfação em Brasília</span>
+                                </div>
                             </div>
                         </motion.div>
                     </div>
@@ -259,6 +265,7 @@ const Home = () => {
                             className="neural-sphere-container"
                         >
                             <div className="neural-sphere"></div>
+                            <div className="neural-sphere-inner"></div>
 
                             {/* Floating Feature Cards */}
                             <motion.div

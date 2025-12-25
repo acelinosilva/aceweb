@@ -18,7 +18,7 @@
 }
 
 .filter-btn {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
     border: 1px solid var(--glass-border);
     color: var(--text-secondary);
     padding: 0.8rem 1.8rem;
@@ -30,7 +30,7 @@
 }
 
 .filter-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--bg-surface);
     color: var(--text-primary);
 }
 
@@ -141,7 +141,7 @@
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
     font-size: 0.7rem;

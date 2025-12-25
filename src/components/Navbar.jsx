@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 import './Navbar.css';
 
 const locations = [
@@ -36,6 +37,7 @@ const locations = [
 ];
 
 const Navbar = () => {
+    const { theme, toggleTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -98,12 +100,30 @@ const Navbar = () => {
 
                     <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link>
                     <Link to="/sobre" className={location.pathname === '/sobre' ? 'active' : ''}>Sobre</Link>
+
+                    <button
+                        className="theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label="Alternar tema"
+                    >
+                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
+
                     <a href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!" className="btn btn-primary nav-cta">Falar Conosco</a>
                 </div>
 
-                <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                <div className="nav-actions-mobile">
+                    <button
+                        className="theme-toggle-mobile"
+                        onClick={toggleTheme}
+                        aria-label="Alternar tema"
+                    >
+                        {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+                    </button>
+                    <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
             </div>
         </nav>
     );

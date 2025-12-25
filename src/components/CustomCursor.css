@@ -25,18 +25,20 @@
 .custom-cursor-dot.hovering {
     width: 10px;
     height: 10px;
-    background-color: #fff;
+    background-color: var(--text-primary);
 }
 
 .custom-cursor-outline.hovering {
     width: 50px;
     height: 50px;
     background-color: rgba(68, 208, 93, 0.15);
-    border-color: #fff;
+    border-color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
-    .custom-cursor-dot, .custom-cursor-outline {
+
+    .custom-cursor-dot,
+    .custom-cursor-outline {
         display: none;
     }
 }
