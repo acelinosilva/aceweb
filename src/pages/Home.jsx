@@ -11,6 +11,7 @@ import SEO from '../components/SEO';
 import Marquee from '../components/Marquee';
 import Counter from '../components/Counter';
 import RevealText from '../components/RevealText';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import './Home.css';
 import { useAsyncImage } from '../hooks/useAsyncImage';
 
@@ -126,44 +127,6 @@ const Home = () => {
             title: "Escalabilidade",
             desc: "Sites preparados para crescer junto com seu negócio, utilizando as tecnologias mais modernas do mercado.",
             features: ["React/Vite", "Performance SEO", "Suporte Dedicado"]
-        }
-    ];
-
-    const testimonials = [
-        {
-            initials: "WC",
-            name: "Wanessa Castro",
-            date: "1 ano atrás",
-            text: "Fui por indicação, e amei o trabalho, rápidos, comprometidos, e experientes. Sucesso garantido !!! Parabéns a toda equipe !!!!",
-            rating: 5
-        },
-        {
-            initials: "ES",
-            name: "Erida Silva",
-            date: "1 ano atrás",
-            text: "Gostamos muito do trabalho, nosso site ficou como a gente desejava! Super rápido em fazer alterações solicitadas! Super indico",
-            rating: 5
-        },
-        {
-            initials: "BE",
-            name: "Breno Emanuel",
-            date: "2 anos atrás",
-            text: "Agilidade e eficiência. Simples assim! Indico.",
-            rating: 5
-        },
-        {
-            initials: "HM",
-            name: "Helio Miranda",
-            date: "2 anos atrás",
-            text: "A experiência na prestação do serviço foi nota 10. O Profissional foi super atencioso e dedicado até a conclusão do serviço contratado. Super indico!",
-            rating: 5
-        },
-        {
-            initials: "AR",
-            name: "Aline Resende",
-            date: "Google Review",
-            text: "Excelente atendimento! O sr. Acelino foi muito atencioso e prestativo conosco, nos ajudou mesmo antes de o contratarmos. O nosso site ficou ótimo.",
-            rating: 5
         }
     ];
 
@@ -507,52 +470,7 @@ const Home = () => {
                         </motion.div>
                     </header>
 
-                    <div className="testimonials-grid">
-                        {testimonials.map((t, index) => {
-                            const [isHovered, setIsHovered] = useState(false);
-                            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-                            return (
-                                <motion.div
-                                    key={index}
-                                    {...fadeInUp}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="testimonial-card glass-card neural-border spotlight-group"
-                                    onMouseMove={(e) => {
-                                        const rect = e.currentTarget.getBoundingClientRect();
-                                        setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-                                        setIsHovered(true);
-                                    }}
-                                    onMouseLeave={() => setIsHovered(false)}
-                                >
-                                    <div
-                                        className="spotlight-glow"
-                                        style={{
-                                            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(68, 208, 93, 0.1), transparent 40%)`,
-                                            opacity: isHovered ? 1 : 0
-                                        }}
-                                    />
-
-                                    <div className="testimonial-header">
-                                        <div className="avatar-circle">{t.initials}</div>
-                                        <div className="client-info">
-                                            <h4>{t.name}</h4>
-                                            <span>{t.date}</span>
-                                        </div>
-                                        <div className="google-stars">
-                                            {[...Array(t.rating)].map((_, i) => (
-                                                <Star key={i} size={14} fill="var(--primary-color)" stroke="none" />
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div className="testimonial-body">
-                                        <Quote size={24} className="quote-icon" />
-                                        <p>{t.text}</p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
+                    <TestimonialsCarousel />
                 </div>
             </section>
 

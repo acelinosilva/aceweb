@@ -6,12 +6,12 @@ import './About.css';
 
 const About = () => {
     const [instData, setInstData] = useState({
-        aboutStory: 'A ACEWEB nasceu no coração do Brasil com um objetivo claro: provar que design de nível internacional e tecnologia de ponta podem ser acessíveis e entregues com rapidez extrema.\n\nNão acreditamos em modelos prontos. Cada pixel que desenhamos e cada linha de código que escrevemos é pensada exclusivamente para a jornada do seu cliente e os objetivos do seu negócio.'
+        aboutStory: 'A ACEWEB nasceu no coração do Brasil com um objetivo claro: provar que design de nível internacional e tecnologia de ponta podem ser acessíveis e entregues com rapidez extrema para empresas que buscam <strong>criação de sites em Brasília-DF</strong> e em todo o território nacional.\n\nNão acreditamos em modelos prontos. Cada pixel que desenhamos e cada linha de código que escrevemos é focada em <strong>SEO em Brasília</strong> e performance extrema, sendo pensada exclusivamente para a jornada do seu cliente e os resultados reais do seu negócio digital.'
     });
 
     useEffect(() => {
         const savedInst = JSON.parse(localStorage.getItem('ace_inst_data'));
-        if (savedInst) setInstData(savedInst);
+        if (savedInst) setInstData(prev => ({ ...prev, ...savedInst }));
     }, []);
 
     const fadeInUp = {
@@ -24,9 +24,9 @@ const About = () => {
     return (
         <div className="about-page">
             <SEO
-                title="A Agência de Criação de Sites em Brasília-DF"
-                description="Conheça a Aceweb, a agência de criação de sites em Brasília-DF focada em design de elite, performance extrema e resultados reais para nossos clientes."
-                keywords="agência de sites brasília, sobre aceweb, criação de sites profissionais df, web design brasília"
+                title="Especialista em Criação de Sites em Brasília | Aceweb"
+                description="Conheça a Aceweb, sua agência de criação de sites em Brasília-DF. Focamos em design de elite, SEO local, landing pages de alta conversão e performance extrema para colocar sua empresa no topo."
+                keywords="criação de sites em brasília, criar site brasília-df, agência de sites brasília, web design df, seo em brasília, otimização de sites para o google, landing page de alta conversão brasília"
                 url="/sobre"
             />
             {/* About Hero */}
@@ -38,9 +38,9 @@ const About = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         className="text-center"
                     >
-                        <span className="badge">Nossa Essência</span>
-                        <h1 className="text-gradient">Design que inspira, <span>Código que escala</span>.</h1>
-                        <p className="hero-subtitle">Conheça a agência que está redefinindo o padrão de sites profissionais no Brasil.</p>
+                        <span className="badge">Nossa Essência Digital</span>
+                        <h1 className="text-gradient">Especialistas em <span>Criação de Sites em Brasília</span>.</h1>
+                        <p className="hero-subtitle">Elevamos o padrão tecnológico do Distrito Federal com soluções digitais focadas em ROI e visibilidade no Google.</p>
                     </motion.div>
                 </div>
             </section>
@@ -50,20 +50,30 @@ const About = () => {
                 <div className="container">
                     <div className="story-grid">
                         <motion.div {...fadeInUp} className="story-content">
-                            <span className="badge">Nossa História</span>
-                            <h2>Transformando a cena digital de <span>Brasília</span> para o mundo.</h2>
+                            <span className="badge">Liderança em Brasília</span>
+                            <h2>Dominando a cena de <span>Web Design no DF</span>.</h2>
                             <div
                                 className="about-story-rich"
                                 dangerouslySetInnerHTML={{ __html: instData.aboutStory }}
                             ></div>
+
+                            <div className="seo-highlights-box">
+                                <h3>Por que escolher a Aceweb para criar seu site?</h3>
+                                <ul>
+                                    <li><strong>SEO Local Estratégico:</strong> Posicionamos sua empresa para buscas em Brasília-DF.</li>
+                                    <li><strong>Performance Web Core Vitals:</strong> Sites que carregam em menos de 2 segundos.</li>
+                                    <li><strong>UI/UX de Alta Performance:</strong> Design focado em converter visitantes em clientes.</li>
+                                </ul>
+                            </div>
+
                             <div className="about-metrics">
                                 <div className="metric-item">
                                     <span className="metric-val">100+</span>
-                                    <span className="metric-label">Projetos Ativos</span>
+                                    <span className="metric-label">Sites Lançados</span>
                                 </div>
                                 <div className="metric-item">
                                     <span className="metric-val">100%</span>
-                                    <span className="metric-label">Client Focus</span>
+                                    <span className="metric-label">Foco no Cliente</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -72,9 +82,33 @@ const About = () => {
                             transition={{ delay: 0.2 }}
                             className="story-visual glass-card neural-border"
                         >
-                            <img src="about-home.png" alt="Aceweb Office" className="story-img" />
+                            <img src="about-home.png" alt="Criação de sites profissionais em Brasília - Equipe Aceweb" className="story-img" />
                             <div className="img-glow-overlay"></div>
                         </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Expertise Section (New for SEO) */}
+            <section className="section-padding bg-darker">
+                <div className="container">
+                    <header className="text-center mb-5">
+                        <span className="badge">Nossas Competências</span>
+                        <h2 className="section-title">Autoridade em <span>Soluções Digitais</span></h2>
+                    </header>
+                    <div className="expertise-grid">
+                        <div className="expertise-card">
+                            <h3>Criação de Sites em Brasília</h3>
+                            <p>Desenvolvemos sites institucionais modernos, totalmente responsivos e otimizados para todos os dispositivos, garantindo que sua marca no DF tenha uma presença digital impecável.</p>
+                        </div>
+                        <div className="expertise-card">
+                            <h3>SEO e Tráfego Orgânico</h3>
+                            <p>Estratégias avançadas de Search Engine Optimization para que seu site apareça na primeira página do Google quando clientes buscarem por seus serviços em Brasília e região.</p>
+                        </div>
+                        <div className="expertise-card">
+                            <h3>Landing Pages de Alta Conversão</h3>
+                            <p>Páginas de vendas ultra-rápidas e com copywriting persuasivo, ideais para campanhas de tráfego pago (Google Ads e Meta Ads) com foco total em geração de leads.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -83,18 +117,18 @@ const About = () => {
             <section className="section-padding bg-surface">
                 <div className="container">
                     <div className="text-center mb-5">
-                        <h2 className="section-title">Nossos <span>Pilares</span></h2>
-                        <p className="max-700 mx-auto">O que nos diferencia em um mercado saturado de soluções genéricas.</p>
+                        <h2 className="section-title">Os <span>Diferenciais</span> Aceweb</h2>
+                        <p className="max-700 mx-auto">Unimos design brasileiro de classe mundial com as tecnologias mais rápidas do mercado global.</p>
                     </div>
 
                     <div className="values-grid-expanded">
                         {[
-                            { icon: <Target />, title: "Precisão Estratégica", desc: "Todo site é uma ferramenta de vendas. Focamos em conversão, não apenas estética." },
-                            { icon: <Shield />, title: "Segurança de Elite", desc: "Proteção total contra ataques e backups redundantes em todos os projetos." },
-                            { icon: <Award />, title: "Qualidade Premium", desc: "Seguimos os padrões globais de UI/UX para garantir sites que impressionam." },
-                            { icon: <Rocket />, title: "Performance Extrema", desc: "Otimização absoluta para carregamento instantâneo em qualquer dispositivo." },
-                            { icon: <Users />, title: "Parceria Real", desc: "Não somos apenas fornecedores, somos parte do crescimento do seu negócio." },
-                            { icon: <Heart />, title: "Design com Alma", desc: "Criatividade brasileira unida à sofisticação técnica para marcas únicas." }
+                            { icon: <Target />, title: "Foco Total em ROI", desc: "Criamos sites que não são apenas bonitos, mas que geram faturamento real para sua empresa no DF." },
+                            { icon: <Shield />, title: "Segurança Avançada", desc: "Protocolos de segurança rígidos e certificação SSL para proteger os dados do seu negócio e dos seus clientes." },
+                            { icon: <Award />, title: "Padrão de Elite", desc: "Utilizamos React e Vite, as mesmas tecnologias de gigantes como Netflix e Instagram, em seu site." },
+                            { icon: <Rocket />, title: "Velocidade Extrema", desc: "Performance nota 90+ no Google PageSpeed Insights para garantir a melhor experiência ao usuário." },
+                            { icon: <Users />, title: "Suporte Especializado", desc: "Atendimento direto e consultoria para que você entenda como o digital está impulsionando seu site." },
+                            { icon: <Heart />, title: "Design Exclusivo", desc: "Nada de templates. Criamos layouts únicos do zero, adaptados à identidade visual da sua marca." }
                         ].map((v, i) => (
                             <motion.div
                                 key={i}
@@ -116,9 +150,9 @@ const About = () => {
                 <div className="container">
                     <motion.div {...fadeInUp} className="cta-final glass-card">
                         <div className="cta-final-content">
-                            <h2>Vamos criar algo <span>extraordinário</span>?</h2>
-                            <p>Sua empresa merece o melhor do design e da tecnologia. Estamos prontos para começar.</p>
-                            <a href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!" className="btn btn-primary">Falar com um Especialista</a>
+                            <h2>Sua busca por <span>criação de sites em Brasília</span> termina aqui.</h2>
+                            <p>Pronto para dominar o Google e elevar o nível da sua autoridade digital? Agende uma conversa gratuita hoje.</p>
+                            <a href="https://api.whatsapp.com/send?phone=5561996986162&text=Ol%C3%A1,%20preciso%20de%20um%20site%20e%20gostaria%20de%20um%20or%C3%A7amento!" className="btn btn-primary">Começar meu Projeto agora</a>
                         </div>
                     </motion.div>
                 </div>
